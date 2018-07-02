@@ -34,6 +34,20 @@
             <button id="btn" class="btn btn-lg btn-warning btn-block" type="button">登陆</button>
           </form>
     </div>
+    <!-- 模态框 -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">错误提示</h4>
+            </div>
+            <div class="modal-body">
+              <p>用户名或者密码输入错误</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.js"></script>
   <script>
@@ -49,8 +63,13 @@
       $.post("php/login.php", params, fn_login, "json");
     }) 
     function fn_login(json) {
-      location.href = 'manager.html'
+      if(json.code == "0") {
+        location.href = 'manager.html'
+      } else {
+        $('#myModal').modal("show");        
+      }
     }
+    // document.cookie = "userName=lilan";
   </script>
 </body>
 </html>

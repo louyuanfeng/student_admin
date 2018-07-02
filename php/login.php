@@ -5,11 +5,11 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $coon = new db();
-    $sql="SELECT * from user WHERE student_name = '$username' and student_pass = '$password'";
+    $sql="SELECT * from user_info WHERE username = '$username' and password = '$password'";
     $row = $coon->Query($sql, 2);
     // 找到数据
     if($row) {
-      $arr = array("id" => $row["student_id"], "student_name"=> $row["student_name"]);
+      $arr = array("id" => $row["id"], "username"=> $row["username"]);
       // 返回用户基本信息
       $array = array("code"=>"0", "msg"=> "", "data"=>  $arr);
       
