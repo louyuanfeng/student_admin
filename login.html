@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>登录页面</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+    body {
+      padding: 30px 0;
+    }
+    .form-signin {
+      max-width: 330px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+    .form-signin input {
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>  
+    <div class="container">
+        <form class="form-signin" id="form-test">
+            <h2 >欢迎登陆</h2>
+            <input type="email" id="account" class="form-control" placeholder="用户名" required autofocus>
+            <input type="password" id="password" class="form-control" placeholder="密码" required>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button id="btn" class="btn btn-lg btn-warning btn-block" type="button">登陆</button>
+          </form>
+    </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+    var $btn = $('#btn');
+    var $account = $('#account'),
+    $pwd = $('#password');
+
+    $btn.click(function() {
+      var params = {
+        username:  $account.val(),
+        password: $pwd.val()
+      }
+      $.post("php/login.php", params, fn_login, "json");
+    }) 
+    function fn_login(json) {
+      location.href = 'manager.html'
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>错题系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+  .wq-title{
+	padding-bottom:40px;
+	
+}
+.wq-title:hover{
+	transition: all .5s;
+	text-shadow: 0 0 5px #999;
+}
+.wq-main-table thead{
+	background: rgba(0,0,0,.3);
+	color: #333;
+}
+.wq-main-table td{
+	max-height: 50px;
+	word-break: break-all;
+}
+.center-vertical {
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.wq-add .modal-content{
+	padding: 20px;
+}</style>
+</head>
+<body>	
+	<div class="container-fluid">
+		<h3 class="wq-title"> 
+			<span class="logo">
+				<img src="http://www.qfedu.com/images/new_logo.png" alt="">
+			</span>
+			易错内容
+			<button type="button" class="btn" data-toggle="modal" data-target=".wq-add">
+					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				添加错题
+			</button>
+		</h3>
+		<!-- 添加错题部分 -->
+		<div class="modal fade wq-add">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		    	<!--细节划分-->
+		    	<h4>请详细填写重点信息:</h4>
+				<div class="form-group">
+				    <label for="wq-content">易错内容</label>
+				    <input type="text" class="form-control" id="wq-content" placeholder="易错内容" value="闭包">
+				</div>
+				<div class="form-group">
+				    <label for="wq-where">错在哪</label>
+				    <textarea id="wq-where" class="form-control" rows="2" placeholder="请详细描述错误位置" value="闭包的原理略有模糊现在已经了解"></textarea>
+				</div>
+				<div class="form-group">
+				    <label for="title">你的想法</label>
+				    <textarea id="wq-idea" class="form-control" rows="2" placeholder="你的感悟" value="闭包利用了垃圾回收机制，在每个函数执行的时候，都会产生一个活动对象，这个活动对象会在函数执行结束之后删除，但是内存的垃圾回收机制会保留已经储存的数据，该数据可查询，闭包就是利用这个原理对已经删除的数据进行查询"></textarea>
+				</div>
+				<div class="text-center">
+					<button type="button" class="btn btn-success" data-dismiss="modal" id="wq-save-question">提交</button>
+				</div>
+		    </div>
+		  </div>
+		</div>
+		<!--错题表格-->
+		<div class="row">
+			<table class="table table-bordered table-hover wq-main-table ">	
+				<!--错题项目-->
+				<thead>
+					<tr>
+						<th class="col-md-1 text-center">#</th>
+						<th class="col-md-3 text-center">易错内容</th>
+						<th class="col-md-3 text-center">错在哪</th>
+						<th class="col-md-3 text-center">你的想法</th>
+						<th class="col-md-1 text-center">删除</th>
+						<th class="col-md-1 text-center">操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<!-- 
+						
+						******结构示例*****
+						
+						<tr class="text-center middle">
+						<td>**索引**</td>
+						<td>**标题**</td>
+						<td>**副标题**</td>
+						<td>
+							<a 
+								href="#" 
+								data-toggle="popover"
+								data-content="**过长内容详情(bootstrap会处理点击显示)**" 
+							>**过长隐藏内容**
+							</a>
+						</td>
+						<td>
+							<button class="btn">删除</button>
+						</td>
+						<td>
+							<button class="btn">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</button>
+						</td>
+					</tr> -->
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+
+</html>
