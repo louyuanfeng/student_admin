@@ -68,6 +68,7 @@
     }) 
     function fn_login(json) {
       if(json.code == "0") {
+        setCookie("id", json.data.id);
         location.href = 'manager.html'
       } else {
         $('#myModal').modal("show");        

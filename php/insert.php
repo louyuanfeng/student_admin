@@ -4,7 +4,8 @@
     $username = $_POST['student_name'];
     $score = $_POST['score'];
     $mark = isset($_POST['mark'])? $_POST['mark'] : '';
-    $sql_insert = "INSERT INTO student_score (student_name, score, mark, teacher_id) VALUES ('$username', $score, ' $mark', 6)";
+    $id = $_COOKIE['id'];
+    $sql_insert = "INSERT INTO student_score (student_name, score, mark, teacher_id) VALUES ('$username', $score, ' $mark', $id)";
     $conn = new db();
     $row = $conn->Query($sql_insert, null);
     if($row) {

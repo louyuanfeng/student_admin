@@ -2,8 +2,8 @@
          header("Content-type: text/html; charset=UTF-8");
          // 遍历数据
          include "public/public_db.php";
-        //  $id = $_COOKIE['userId'];
-         $sql = "select id, student_name, score, mark from student_score";
+         $id = $_COOKIE['id'];
+         $sql = "select id, student_name, score, mark from student_score where teacher_id=$id";
          $coon = new db();
          $row = $coon->Query($sql, 1);
          // 找到数据
