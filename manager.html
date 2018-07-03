@@ -90,19 +90,6 @@
 					</tr>
 				</thead>
 				<tbody id="tbody">
-<<<<<<< HEAD
-					<!-- <tr class="text-center middle">
-								<td>1</td>
-							<td>王京</td>
-							<td>88</td>
-							<td>这次没有上次考的好</td>
-							<td>
-								<button class="btn btn-danger">删除</button>
-								<button class="btn btn-warning">修改</button>
-							</td>
-						</tr>
-						 -->
-=======
 					<!-- <tr class="text-center middle"> -->
 					<!-- <td>1</td>
 								<td>王京</td>
@@ -113,7 +100,6 @@
 									<button class="btn btn-warning">修改</button>
 								</td>
 							</tr> -->
->>>>>>> a5b3451bb43428349c64176c97ac11c56b6a7d3c
 					<!-- 
 						
 						******结构示例*****
@@ -139,83 +125,12 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/manager.js"></script>
 <script>
-<<<<<<< HEAD
 	
 	// 获取数据（ajax）
 	// 遍历表格
 	// 遍历 （for）
 	// 创建DOM（通过创建DOM元素或者直接字符串拼接）
 	// 放到该放入的dom元素里
-=======
-	var manager = (function () {
-		$saveBtn = $('#wq-save-score');
-		$tbody = $("#tbody");
-		var data = [];
-		return {
-			init: function () {
-				var _this = this;
-				this.getData();
-				this.events();
-				// 添加一条数据
-			},
-			events: function() {
-				var _this = this;
-				$saveBtn.click(function () {
-					var params = {
-						student_name: $('#wq-name').val(),
-						score: $('#wq-score').val(),
-						mark: $('#wq-mark').val()
-					}
-					$.post('php/insert.php', params, function (json) {
-						if (json.code == 0) {
-							data.push(json.data);
-							_this.initData(data);
-						}
-					}, "json")
-				})
-				$tbody.on("click", ".btn-danger", function (e) {
-					var tr = $(this).closest('tr');
-					var params = {
-						id: tr.find("td").eq(0).html()
-					}
-					$.post('php/del.php', params, function (json) {
-						if (json.code == 200) {
-							tr.remove();
-						}
-					}, "json")
-				})
-			},
-			getData() {
-				var _this = this
-				$.post('php/get_date.php', function (json) {
-						if (json.code == 0) {
-							data = json.data;
-							_this.initData(data);
-						}
-					}, "json")
-			},
-			initData(data) {
-				$tbody.html('');
-				var frag = document.createDocumentFragment();
-				for (var i = 0; i < data.length; i++) {
-					var tr = document.createElement('tr');
-					tr.className = "text-center middle";
-					for (var t in data[i]) {
-						var td = document.createElement('td');
-						td.innerHTML = data[i][t];
-						tr.appendChild(td);
-					}
-					var td = document.createElement('td');
-					td.innerHTML = "<button class='btn btn-warning'>修改</button> <button class='btn btn-danger'>删除</button>"
-					tr.appendChild(td);
-					frag.appendChild(tr);
-				}
-				$tbody.append(frag);
-			}
-		}
-	})()
-	manager.init();
->>>>>>> a5b3451bb43428349c64176c97ac11c56b6a7d3c
 </script>
 
 </html>
