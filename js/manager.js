@@ -53,6 +53,9 @@ var manager = (function(){
             // 遍历所有数据，插入dom元素
             this.insertData(allData);
         },
+        upData() {
+
+        },
         delData(id, tr) {
             var params = {
                 id: id
@@ -77,6 +80,47 @@ var manager = (function(){
                 // console.log(id);
                 // 获取id后发送ajax
                 _this.delData(id, tr);
+            })
+            // 修改按钮
+            $tbody.on('click', '.btn-warning', function() {
+                // 把修改按钮转换成确定按钮
+                // jq链式调用
+                // 改变属性
+                $(this).html('确定').attr('class', 'btn btn-success');
+                // 找到当前行
+                var tr = $(this).closest('tr');
+                // 同过tr找td
+                tdAll = tr.find("td");
+                for(let i = 1; i < tdAll.length -1; i++) {
+                    var val = tdAll.eq(i).html();
+                    tdAll.eq(i).html(`<input type="text" value="${val}">`);
+                }
+
+            })
+            $tbody.on('click', '.btn-success', function() {
+                var _this = $(this)
+                var tr = _this.closest('tr');
+                // 同过tr找td
+                tdAll = tr.find("td");
+                var params = {
+                    id: tdAll.eq(0).html(),
+                    username: tdAll.eq(1).find("input").val(),
+                    score: tdAll.eq(2).find("input").val(),
+                    mark: tdAll.eq(3).find("input").val()
+                }
+                console.log(params);
+                $.post('php/update.php', params, function(json) {
+                    if(json.code == 200) {
+                        // 成功修改数据以后， 再把input框替换为文字值
+                        _this.html('修改').attr('class', 'btn btn-warning');
+                        for(let i = 1; i < tdAll.length -1; i++) {
+                            var val = tdAll.eq(i).find("input").val();
+                            tdAll.eq(i).html(val);
+                        }
+                    }
+                }, "json")
+                
+
             })
             $saveBtn.on('click', function() {
                 // 获取三个文本框的值

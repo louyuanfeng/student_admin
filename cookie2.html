@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnSet">设置cookie</button>
+    <button id="btnGet">读取cookie</button>
+    <button id="btnClear">清除cookie</button>
+    <script>
+         function setCookie(key, value, day) {
+            var expires = ''
+            if(day) {
+                var data = Date.now(); // 获取当前时间到1970毫秒数
+                data = new Date(data += day * 24 * 60 * 60 * 1000);
+                // data.setDate(data.getDate() + day);
+                expires = "expires=" + data
+            }
+            document.cookie = `${key}=${value}; ${expires}`;
+        }
+        // 获取cookie
+        function getCookie(key) {
+            // "teacher_id=38; teacher_name=xixi; teacher_age=38"
+            // 分割字符串， 把字符串变成数组；
+            var arr = document.cookie.split('; ');
+            console.log(arr);
+            var obj = {}
+            for(var i = 0; i < arr.length; i++) {
+                var name = arr[i].split('=')
+                obj[name[0]]  = name[1];
+            }
+            return obj[key];
+        }
+        // 清除cookie
+        function cleanCookie(key) {
+            setCookie(key, '', -1);
+        }
+        btnSet.onclick= function() {
+            var key = prompt('请输入设置的key');
+            var val = prompt('请输入设置的val');
+            var day = prompt('请输入设置的day');
+            setCookie(key, val, day)
+        }
+        btnGet.onclick= function() {
+            var key = prompt('请输入设置的key');
+            console.log(getCookie(key));
+        }
+        btnClear.onclick= function() {
+            var key = prompt('请输入设置的key');
+            cleanCookie(key);
+        }
+
+    </script>
+</body>
+</html>
