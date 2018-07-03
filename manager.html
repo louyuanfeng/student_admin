@@ -63,7 +63,7 @@
 				    <textarea id="wq-mark" class="form-control" rows="2" placeholder="添加备注" ></textarea>
 				</div>
 				<div class="text-center">
-					<button type="button" class="btn btn-success" data-dismiss="modal" id="wq-save-score">提交</button>
+					<button type="button" class="btn btn-success " data-dismiss="modal" id="wq-save-score">提交</button>
 				</div>
 		    </div>
 		  </div>
@@ -82,16 +82,17 @@
 					</tr>
 				</thead>
 				<tbody id="tbody">
-						<!-- <tr class="text-center middle"> -->
-								<!-- <td>1</td>
-								<td>王京</td>
-								<td>88</td>
-								<td>这次没有上次考的好</td>
-								<td>
-									<button class="btn btn-danger">删除</button>
-									<button class="btn btn-warning">修改</button>
-								</td>
-							</tr> -->
+					<!-- <tr class="text-center middle">
+								<td>1</td>
+							<td>王京</td>
+							<td>88</td>
+							<td>这次没有上次考的好</td>
+							<td>
+								<button class="btn btn-danger">删除</button>
+								<button class="btn btn-warning">修改</button>
+							</td>
+						</tr>
+						 -->
 					<!-- 
 						
 						******结构示例*****
@@ -115,64 +116,13 @@
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/manager.js"></script>
 <script>
-	// 遍历表格数据
-	function getData(data) {
-		$('#tbody').html('');
-		for (var i = 0; i < data.length; i++) {
-			var tr = document.createElement('tr');
-			tr.className = "text-center middle";
-			for(var t in data[i]) {
-				var td = document.createElement('td');
-				td.innerHTML = data[i][t];
-				tr.appendChild(td);
-			}
-			var td = document.createElement('td');
-			td.innerHTML = "<button class='btn btn-warning'>修改</button> <button class='btn btn-danger'>删除</button>"
-			tr.appendChild(td);
-			$('#tbody').append(tr);
-		}
-	}
-	var data = null; //保存全局数据
-	// 获取表格数据
-	$.post('php/get_date.php', function(json) {
-		json = JSON.parse(json);
-		if (json.code == "0") {
-			data = json.data;
-			getData(data)
-		}
-	})
-	// 添加一条数据
-	$('#wq-save-score').click(function() {
-		var params = {
-			student_name: $('#wq-name').val(),
-			score: $('#wq-score').val(),
-			mark: $('#wq-mark').val()
-		}
-		$.post('php/insert.php',params, function(json) {
-			if(json.code == 0) {
-				data.push(json.data);
-				getData(data);
-			}
-		}, "json")
-	})
-	//删除一行数据
-	function delData(ele) {
-
-	}
-	$("#tbody").on("click", ".btn-danger", function() {
-		var tr = this.closest('tr');
-		var params = {
-			id: 19
-		}
-		$.post('', params, function(json) {
-			if(json.code == 200) {
-				tr.remove()
-			}
-		}, "json")
 	
-		// console.log(1111)
-		// console.log(this.closest('tr').remove());
-	})
+	// 获取数据（ajax）
+	// 遍历表格
+	// 遍历 （for）
+	// 创建DOM（通过创建DOM元素或者直接字符串拼接）
+	// 放到该放入的dom元素里
 </script>
 </html>

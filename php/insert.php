@@ -10,7 +10,7 @@
     if($row) {
       $sql = "select id, student_name, score, mark from student_score ORDER BY id desc";
       $arr = $conn->Query($sql, 2);
-      $array = array("code"=>"0", "msg"=> "", "data"=> $arr);
+      $array = array("code"=>"200", "msg"=> "", "data"=> $arr);
     } else {
       $array = array("code"=>"1001", "msg"=> "添加失败");
     }

@@ -9,9 +9,9 @@
          // 找到数据
          if($row) {
            // 返回用户基本信息
-           $array = array("code"=>"0", "msg"=> "", "data"=>  $row);
+           $array = array("code"=>"200", "msg"=> "", "data"=>  $row);
          } else {
-           $array = array("code"=>"100", "msg"=> "获取数据失败");
+           $array = array("code"=>"1001", "msg"=> "获取数据失败");
          }
          echo json_encode($array);
         //  var_dump($rows);
